@@ -1,0 +1,2 @@
+<textarea id="referrer_spam_list" name="<?php esc_attr_e( $settings_name . '[referrer_spam_list]' ); ?>" class="small-text" rows="25" cols="50"><?php echo esc_textarea( $list ); ?></textarea>
+<p class="description"><?php echo __( 'Introduce one referrer per line, without commas' ); ?>.</p>

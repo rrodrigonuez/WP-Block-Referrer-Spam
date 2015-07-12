@@ -1,114 +1,114 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.0.1
+=== WP Block Referrer Spam ===
+Contributors: barragan
+Tags: analytics, analytics block, analytics blocker, block analytics, analytics spam, google analytics, google spam, googlespam, block google spam, referrer, referrers, anti-referrers, block referrer, block referrers, referrer bloker, referrers bloker, block referrer spam, spam, spammer, spammers, spam referrer attack, anti-spam, antispam, spam bloker, block spam, spam filter, spambot, security, pingback, trackback, apache, nginx, iis
+Requires at least: 3.2
 Tested up to: 4.2.2
-Stable tag: 1.0.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Block 250+ spam sites, such as semalt.com and 4webmasters.org!
+Keep your website safe and your Google Analytics statistics clean and accurate.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Keep your WordPress site safe and away from **referrer spam attacks**!
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+This plugin blocks spam sites and referrer spammers from reaching your website, keeping your Google Analytics statistics clean and accurate. It also improves the overall performance of your site by keeping away these unwanted referrers from your website, which means that your web server won't need to consume resources when a referrer spammer visits your site!
 
-A few notes about the sections above:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+= Why you should use this plugin? =
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+It is very common to be attacked by **referrer spammers**. Referrer spam consists in making repeated web site requests using a fake referer URL to the site the spammer wishes to advertise.
+Sites that publish their access logs, including referrer statistics, will then inadvertently link back to the spammer's site. These links will be indexed by search engines as they crawl the access logs.
+This benefits the spammer because the free link improves the spammer site's search engine ranking owing to link-counting algorithms that search engines use.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+This is not really harmful for your site or your site's search engine ranking. But it is very annoying when you try to analize your Google Analytics statistics due to big amounts of visits coming from referrer spammers.
+
+
+= How can I check if my site is being attacked by referrer spammers? =
+
+It is very easy to check if your site is being attacked by referrer spamers. And I bet you that more than likely your site has some suscpicious visits that could be banned using this plugin.
+
+1. Open your Google Analytics account
+1. Select the statistics of the site that you want to check
+1. Expand `Acquisition` menu
+1. Expand `All Traffic` menu
+1. Go to `Referrals` menu
+1. Underneath the graphic you will see the list of referred traffic
+1. If you see weird domains like **trafficmonetize.org**, **webmonetizer.net** or **buttons-for-website.com** it means that your site is suffering **referrer spam attacks**
+
+
+= Compatibility: =
+
+This plugin is fully compatible with any webserver by default.
+Its adaptability ensures that will work with any version of either apache, nginx, iis or lighttpd webserver.
+
+* When apache is used, the plugin adds specific rules into .htaccess file.
+* When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
+
+
+= The most updated Referrer Spam List: =
+
+Every week, this plugin updates the list of referrer spammers from [this community-contributed list](https://github.com/piwik/referrer-spam-blacklist) of [referrer spammers](http://en.wikipedia.org/wiki/Referer_spam).
+
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-e.g.
+1. Go to the WordPress Dashboard **Add New Plugin** section
+1. Search For **WP Block Referral Spam**
+1. Install, then Activate it
+1. The plugin will update the referrer list automatically every 7 days
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
+
+**Manual/Old Way:**
+1. Upload `wp-block-referrer-spam` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('wp_block_referrer_spam_hook'); ?>` in your templates
+1. Go to **Tools > Block Referrer Spam** page and set the options under **Settings** section
+
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Where do I change the plugin's settings? =
 
-An answer to that question.
+Navigate to **Tools > Block Referrer Spam** in your WordPress Dashboard, and look for the **Settings** section.
 
-= What about foo bar? =
+= Can I add my own list of referrer spammers? =
 
-Answer to foo bar dilemma.
+Yes! This plugin not only protects you against over 200 referrer spammers, but it also allows you to add your own referrer spammers.
+To do so, go to the plugin's setting page (**Tools > Block Referrer Spam**) and add your spammers in the text box.
+
+= Is this plugin compatible with my webserver? =
+
+This plugin is fully compatible with any webserver out-of-the-box.
+Its adaptability ensures that will work with any version of either apache, nginx, iis or lighttpd webserver.
+
+* When apache is used, the plugin adds specific rules into .htaccess file.
+* When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
+
+= How often does the Referrer Spam List get updated? =
+
+The Referrer Spam List is updated automatically every 7 days.
+It loads the values from a community-contributed list of [referrer spammers](http://en.wikipedia.org/wiki/Referer_spam), you can see the source [here](https://github.com/piwik/referrer-spam-blacklist).
+
+= How secure is this plugin? =
+
+This plugin has been developed with one thing in mind: to keep your WordPress site as **secure** as possible, **ad free**, **spam free** and with the maximum **performance** reachable.
+The developers that contribute to build this plugin are 100% **reliable** and some of the **most experienced WordPress developers**.
+
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. The plugin's settings section, found under **Tools > Block Referrer Spam**.
+2. Example of **referrer spammers** in Google Analytics.
+
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
+= 1.1 =
+* Renamed internal functions to ensure compatilibity
 
 = 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+* Initial public release

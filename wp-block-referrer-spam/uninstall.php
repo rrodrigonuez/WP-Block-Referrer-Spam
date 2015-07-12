@@ -20,7 +20,7 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       http://www.twomandarins.com
- * @since      1.0.0
+ * @since      1.0
  *
  * @package    WP_Block_Referrer_Spam
  */
@@ -29,3 +29,10 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+function uninstall_wpbrs_plugin() {
+	require_once ( plugin_dir_path( __FILE__ ) . 'includes/wpbrs-loader.php' );
+	WPBRS_Loader::uninstall_plugin();
+}
+
+uninstall_wpbrs_plugin();

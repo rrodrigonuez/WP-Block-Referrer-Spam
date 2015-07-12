@@ -3,14 +3,14 @@
 /**
  *
  * @link              http://www.twomandarins.com
- * @since             1.0.0
+ * @since             1.0
  * @package           WP_Block_Referrer_Spam
  *
  * @wordpress-plugin
  * Plugin Name:       WP Block Referrer Spam
  * Plugin URI:        http://www.twomandarins.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Description:       Blocks referrer spammers from a community-contributed list. Keep your analytics data clean and accurate.
+ * Version:           1.1
  * Author:            Roger Rodrigo
  * Author URI:        http://www.twomandarins.com/
  * License:           GPL-2.0+
@@ -24,46 +24,77 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'WPBRS_REQUIRED_PHP_VERSION', '5.3' ); 	// because of get_called_class()
+define( 'WPBRS_REQUIRED_WP_VERSION',  '3.1' ); 	// because of esc_textarea()
+
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-wp-block-referrer-spam-activator.php
+ * Checks if the system requirements are met
+ *
+ * @since    1.0
+ * @return bool True if system requirements are met, false if not
  */
-function activate_wp_block_referrer_spam() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-block-referrer-spam-activator.php';
-	WP_Block_Referrer_Spam_Activator::activate();
+function wpbrs_requirements_met() {
+
+	global $wp_version;
+
+	if ( version_compare( PHP_VERSION, WPBRS_REQUIRED_PHP_VERSION, '<' ) ) {
+		return false;
+	}
+	if ( version_compare( $wp_version, WPBRS_REQUIRED_WP_VERSION, '<' ) ) {
+		return false;
+	}
+	return true;
+
 }
 
 /**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wp-block-referrer-spam-deactivator.php
+ * Prints an error that the system requirements weren't met.
+ *
+ * @since    1.0
  */
-function deactivate_wp_block_referrer_spam() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-block-referrer-spam-deactivator.php';
-	WP_Block_Referrer_Spam_Deactivator::deactivate();
+function wpbrs_requirements_error() {
+
+	global $wp_version;
+	require_once( dirname( __FILE__ ) . '/views/errors/requirements-error.php' );
+
 }
 
-register_activation_hook( __FILE__, 'activate_wp_block_referrer_spam' );
-register_deactivation_hook( __FILE__, 'deactivate_wp_block_referrer_spam' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wp-block-referrer-spam.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
 function run_wp_block_referrer_spam() {
 
-	$plugin = new WP_Block_Referrer_Spam();
-	$plugin->run();
+	/**
+	 * The core plugin class that is used to define internationalization,
+	 * admin-specific hooks, and public-facing site hooks.
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-block-referrer-spam.php';
+
+	/**
+	 * Begins execution of the plugin.
+	 *
+	 * Since everything within the plugin is registered via hooks,
+	 * then kicking off the plugin from this point in the file does
+	 * not affect the page life cycle.
+	 *
+	 * @since    1.0
+	 */
+	$plugin = WP_Block_Referrer_Spam::get_instance();
 
 }
-run_wp_block_referrer_spam();
+
+/**
+ * Check requirements and load main class
+ * The main program needs to be in a separate file that only gets loaded if the plugin requirements are met.
+ * Otherwise older PHP installations could crash when trying to parse it.
+ * 
+ * @since    1.0
+ */
+if ( wpbrs_requirements_met() ) {
+
+	run_wp_block_referrer_spam();
+
+} else {
+
+	add_action( 'admin_notices', 'wpbrs_requirements_error' );
+	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	deactivate_plugins( plugin_basename( __FILE__ ) );
+
+}
