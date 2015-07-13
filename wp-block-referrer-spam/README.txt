@@ -1,5 +1,6 @@
 === WP Block Referrer Spam ===
 Contributors: barragan
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UGD72JQRCVQM8
 Tags: analytics, analytics block, analytics blocker, block analytics, analytics spam, google analytics, google spam, googlespam, block google spam, referrer, referrers, anti-referrers, block referrer, block referrers, referrer bloker, referrers bloker, block referrer spam, spam, spammer, spammers, spam referrer attack, anti-spam, antispam, spam bloker, block spam, spam filter, spambot, security, pingback, trackback, apache, nginx, iis
 Requires at least: 3.2
 Tested up to: 4.2.2
@@ -47,25 +48,33 @@ Its adaptability ensures that will work with any version of either apache, nginx
 * When apache is used, the plugin adds specific rules into .htaccess file.
 * When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
 
+Requires at least WordPress 3.2 and PHP 5.3
+
 
 = The most updated Referrer Spam List: =
 
 Every week, this plugin updates the list of referrer spammers from [this community-contributed list](https://github.com/piwik/referrer-spam-blacklist) of [referrer spammers](http://en.wikipedia.org/wiki/Referer_spam).
 
 
+**Development is on Bitbucket: https://bitbucket.org/rrodrigonuez/wp-block-referrer-spam**
+
+Pull requests are more than welcome!
+
+
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+= From your WordPress dashboard: =
 
-1. Go to the WordPress Dashboard **Add New Plugin** section
-1. Search For **WP Block Referral Spam**
+1. Go to the `Plugins > Add New`
+1. Search For `WP Block Referral Spam`
 1. Install, then Activate it
 1. The plugin will update the referrer list automatically every 7 days
 
+= From WordPress.org: =
 
-**Manual/Old Way:**
-1. Upload `wp-block-referrer-spam` folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Download `WP Block Referral Spam` plugin
+1. Upload `wp-block-referrer-spam` directory to your `/wp-content/plugins/` directory, using your favorite method (ftp, sftp, scp, etc...)
+1. Activate `WP Block Referral Spam` through the 'Plugins' page in your WordPress site
 1. Go to **Tools > Block Referrer Spam** page and set the options under **Settings** section
 
 
