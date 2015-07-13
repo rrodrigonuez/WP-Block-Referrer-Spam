@@ -37,7 +37,7 @@ if ( ! class_exists( 'WPBRS_Controller_Cron' ) ) {
 		protected function register_hook_callbacks() {
 
 			WPBRS_Actions_Filters::add_action( 'check_referrers_updates', 	$this, 'check_referrers_updates_cron_job' );
-			WPBRS_Actions_Filters::add_action( 'cron_schedules', 			$this, 'add_custom_cron_intervals' );
+			WPBRS_Actions_Filters::add_action( 'cron_schedules', 			__CLASS__, 'add_custom_cron_intervals' );
 
 		}
 
@@ -59,7 +59,7 @@ if ( ! class_exists( 'WPBRS_Controller_Cron' ) ) {
 		 * @param array $schedules
 		 * @return array
 		 */
-		public function add_custom_cron_intervals( $schedules ) {
+		public static function add_custom_cron_intervals( $schedules ) {
 
 			// add custom weekly interval
 			$schedules[ self::WEEKLY_CRON ] = array(
@@ -79,7 +79,8 @@ if ( ! class_exists( 'WPBRS_Controller_Cron' ) ) {
 		public static function register_cron_jobs() {
 
 			if( !wp_next_scheduled( self::CHECK_UPDATES_TASK ) ) {
-				wp_schedule_event( current_time( 'timestamp' ), self::WEEKLY_CRON, self::CHECK_UPDATES_TASK );
+				add_action( 'cron_schedules', array( __CLASS__, 'add_custom_cron_intervals' ) );
+				wp_schedule_event( time(), self::WEEKLY_CRON, self::CHECK_UPDATES_TASK );
 			}
 
 		}

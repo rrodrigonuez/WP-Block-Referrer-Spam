@@ -153,8 +153,6 @@ if ( ! class_exists( 'WPBRS_Loader' ) ) {
 			WPBRS_Controller_Blocker::filter_referrers_htaccess();
 			WPBRS_Controller_Cron::register_cron_jobs();
 
-			flush_rewrite_rules();
-
 		}
 
 		/**

@@ -104,6 +104,9 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 
 			$rules = self::build_rules();
 			if ( !empty( $rules ) ) {
+				if ( !function_exists( 'insert_with_markers' ) )
+					require_once( WP_Block_Referrer_Spam::$plugin_path . '../../../wp-admin/includes/misc.php' );
+				
 				if ( !insert_with_markers( $htaccess_path, self::HTACCESS_MARKER, $rules ) ) {
 					self::htacess_error_admin_notice();
 					return false;
@@ -148,6 +151,8 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 						}
 					}
 				}
+				
+				fclose( $f );
 				return true;
 			} else {
 				return false;
