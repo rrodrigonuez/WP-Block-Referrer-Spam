@@ -45,8 +45,8 @@ It is very easy to check if your site is being attacked by referrer spamers. And
 This plugin is fully compatible with any webserver by default.
 Its adaptability ensures that will work with any version of either apache, nginx, iis or lighttpd webserver.
 
-* When apache is used, the plugin adds specific rules into .htaccess file.
-* When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
+*   When apache is used, the plugin adds specific rules into .htaccess file.
+*   When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
 
 Requires at least WordPress 3.2 and PHP 5.3
 
@@ -55,6 +55,8 @@ Requires at least WordPress 3.2 and PHP 5.3
 
 Every week, this plugin updates the list of referrer spammers from [this community-contributed list](https://github.com/piwik/referrer-spam-blacklist) of [referrer spammers](http://en.wikipedia.org/wiki/Referer_spam).
 
+
+Please show your support for this plugin by giving it a [rating](http://wordpress.org/support/view/plugin-reviews/wp-block-referrer-spam?rate=5?rate=5#postform)
 
 **Development is on Bitbucket: https://bitbucket.org/rrodrigonuez/wp-block-referrer-spam**
 
@@ -67,15 +69,29 @@ Pull requests are more than welcome!
 
 1. Go to the `Plugins > Add New`
 1. Search For `WP Block Referral Spam`
-1. Install, then Activate it
+1. Install it
+1. Activate `WP Block Referral Spam` plugin through the `Plugins` page in your WordPress site
 1. The plugin will update the referrer list automatically every 7 days
 
-= From WordPress.org: =
+
+= Uploading it in WordPress Dashboard: =
 
 1. Download `WP Block Referral Spam` plugin
+1. Go to the `Plugins > Add New`
+1. Click `Upload`
+1. Select `wp-block-referrer-spam.zip` file from your computer
+1. Click `Install Now`
+1. Activate `WP Block Referral Spam` plugin through the `Plugins` page in your WordPress site
+1. The plugin will update the referrer list automatically every 7 days
+
+
+= From WordPress.org using FTP: =
+
+1. Download `WP Block Referral Spam` plugin
+1. Unzip `wp-block-referrer-spam.zip` file
 1. Upload `wp-block-referrer-spam` directory to your `/wp-content/plugins/` directory, using your favorite method (ftp, sftp, scp, etc...)
-1. Activate `WP Block Referral Spam` through the 'Plugins' page in your WordPress site
-1. Go to **Tools > Block Referrer Spam** page and set the options under **Settings** section
+1. Activate `WP Block Referral Spam` through the `Plugins` page in your WordPress site
+1. The plugin will update the referrer list automatically every 7 days
 
 
 == Frequently Asked Questions ==
@@ -94,8 +110,8 @@ To do so, go to the plugin's setting page (**Tools > Block Referrer Spam**) and 
 This plugin is fully compatible with any webserver out-of-the-box.
 Its adaptability ensures that will work with any version of either apache, nginx, iis or lighttpd webserver.
 
-* When apache is used, the plugin adds specific rules into .htaccess file.
-* When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
+*   When apache is used, the plugin adds specific rules into .htaccess file.
+*   When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
 
 = How often does the Referrer Spam List get updated? =
 
