@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: analytics, analytics block, analytics blocker, block analytics, analytics spam, google analytics, google spam, googlespam, block google spam, referrer, referrers, anti-referrers, block referrer, block referrers, referrer bloker, referrers bloker, block referrer spam, spam, spammer, spammers, spam referrer attack, anti-spam, antispam, spam bloker, block spam, spam filter, spambot, security, pingback, trackback, apache, nginx, iis
 Requires at least: 3.2
 Tested up to: 4.2.2
-Stable tag: 1.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,8 +132,25 @@ The developers that contribute to build this plugin are 100% **reliable** and so
 
 == Changelog ==
 
+= 1.3 =
+* Fixed issues with cronjob
+
+= 1.2 =
+* Close .htaccess file after removing markers
+
 = 1.1 =
 * Renamed internal functions to ensure compatilibity
 
 = 1.0 =
 * Initial public release
+
+
+== Upgrade Notice ==
+
+= 1.3 =
+This version solves some issues when the plugin tries to modify .htaccess file automatically throug cronjob tasks.
+Please, update to the latest version to ensure a good functionality of the plugin.
+
+= 1.2 =
+This version solves some issues when the plugin tries to modify .htaccess file.
+Please, update to the latest version to ensure a good functionality of the plugin.
