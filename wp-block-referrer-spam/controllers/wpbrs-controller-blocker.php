@@ -47,7 +47,7 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 		 */
 		public function filter_referrers_no_htaccess() {
 
-			if ( false === stripos( $_SERVER['SERVER_SOFTWARE'], 'apache' )
+			if ( false !== stripos( $_SERVER['SERVER_SOFTWARE'], 'apache' )
 				|| is_user_logged_in()
 				|| !isset( $_SERVER['HTTP_REFERER'] )
 				|| empty( $_SERVER['HTTP_REFERER'] )
@@ -56,13 +56,13 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 			}
 
 			if ( isset( $_SESSION[ self::SESSION_NAME ] )
-				|| false === stripos( $_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'] ) // Whitelist server hostname
+				|| false !== stripos( $_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'] ) // Whitelist server hostname
 			) {
 				return true;
 			}
 
 			$referrer = preg_replace( "/(http|https)?:\/\/(www\.)?/", '', rtrim( $_SERVER['HTTP_REFERER'], '/' ) );
-			$referrer = str_replace( '.', '\.', $referrer );
+			$referrer = str_replace( array( '.', '/' ), array( '\.', '\/' ), $referrer );
 
 			$options = $this->get_model()->get_settings();
 			if ( isset( $options['referrer_spam_list'] ) && preg_grep( "/$referrer/i", $options['referrer_spam_list'] ) ) {

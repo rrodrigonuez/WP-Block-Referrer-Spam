@@ -152,6 +152,9 @@ The developers that contribute to build this plugin are 100% **reliable** and so
 
 == Upgrade Notice ==
 
+= 1.4 =
+This version impoves performance and referrer detection
+
 = 1.3 =
 This version solves warnings that appear when BuddyPress is installed and active.
 
