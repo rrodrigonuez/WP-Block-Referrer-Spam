@@ -36,10 +36,7 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 		 */
 		protected function register_hook_callbacks() {
 
-			require_once( ABSPATH . 'wp-includes/pluggable.php' );
-			if ( !is_user_logged_in() && !preg_match( "/apache/i", $_SERVER['SERVER_SOFTWARE'] ) ) {
-				WPBRS_Actions_Filters::add_action( 'init', $this, 'filter_referrers_no_htaccess' );
-			}
+			WPBRS_Actions_Filters::add_action( 'init', $this, 'filter_referrers_no_htaccess', 0, 0 );
 
 		}
 
@@ -50,19 +47,27 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 		 */
 		public function filter_referrers_no_htaccess() {
 
-			if ( isset( $_SESSION[ self::SESSION_NAME ] ) || !preg_match( '/' . $_SERVER['SERVER_NAME'] . '/', $_SERVER['HTTP_REFERER'] ) ) {
+			if ( false !== stripos( $_SERVER['SERVER_SOFTWARE'], 'apache' )
+				|| is_user_logged_in()
+				|| !isset( $_SERVER['HTTP_REFERER'] )
+				|| empty( $_SERVER['HTTP_REFERER'] )
+			) {
 				return true;
 			}
 
-			if ( isset( $_SERVER['HTTP_REFERER'] ) && !empty( $_SERVER['HTTP_REFERER'] ) ) {
-				$referrer = preg_replace( '#^https?://#', '', rtrim( $_SERVER['HTTP_REFERER'], '/' ) );
+			if ( isset( $_SESSION[ self::SESSION_NAME ] )
+				|| false !== stripos( $_SERVER['HTTP_REFERER'], $_SERVER['SERVER_NAME'] ) // Whitelist server hostname
+			) {
+				return true;
+			}
 
-				$options = $this->get_model()->get_settings();
-				if ( isset( $options['referrer_spam_list'] ) && preg_grep( "/$referrer/i", $options['referrer_spam_list'] ) ) {
-					header( "HTTP/1.0 403 Forbidden" );
-					die();
-				}
+			$referrer = preg_replace( "/(http|https)?:\/\/(www\.)?/", '', rtrim( $_SERVER['HTTP_REFERER'], '/' ) );
+			$referrer = str_replace( array( '.', '/' ), array( '\.', '\/' ), $referrer );
 
+			$options = $this->get_model()->get_settings();
+			if ( isset( $options['referrer_spam_list'] ) && preg_grep( "/$referrer/i", $options['referrer_spam_list'] ) ) {
+				header( "HTTP/1.0 403 Forbidden" );
+				die();
 			}
 			
 			$_SESSION[ self::SESSION_NAME ] = true;
@@ -221,7 +226,7 @@ if ( ! class_exists( 'WPBRS_Controller_Blocker' ) ) {
 
 			foreach ( $settings['referrer_spam_list'] as $key => $value ) {
 				if ( trim( $value ) ) {
-					$rules[] = $rule_prefix . $value . $rule_suffix;
+					$rules[] = $rule_prefix . str_replace( '.', '\.', $value ) . $rule_suffix;
 				}
 			}
 			if ( !empty($rules ) ) {

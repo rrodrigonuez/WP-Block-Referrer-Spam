@@ -60,7 +60,7 @@ if ( ! class_exists( 'WP_Block_Referrer_Spam' ) ) {
 		 *
 		 * @since    1.0
 		 */
-		const PLUGIN_VERSION 	= '1.3';
+		const PLUGIN_VERSION 	= '1.4';
 
 		/**
 		 * The plugin prefix to referenciate classes inside the plugin

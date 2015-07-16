@@ -10,7 +10,7 @@
  * Plugin Name:       WP Block Referrer Spam
  * Plugin URI:        http://www.twomandarins.com
  * Description:       Blocks referrer spammers from a community-contributed list. Keep your analytics data clean and accurate.
- * Version:           1.3
+ * Version:           1.4
  * Author:            Roger Rodrigo
  * Author URI:        http://www.twomandarins.com/
  * License:           GPL-2.0+

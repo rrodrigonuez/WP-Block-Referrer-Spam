@@ -107,7 +107,7 @@
 
 			if ( lines != '' ) {
 				$.each( lines, function ( key, value ) {
-					if ( !value.match( referrerExp ) ) {
+					if ( !value.match( referrerExp ) || window.location.hostname == value) {
 						response.fail = true;
 						response.message = value + " is not a valid Referrer.\nPlease, fix it and try again.";
 						return false;

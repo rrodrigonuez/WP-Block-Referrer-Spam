@@ -70,16 +70,14 @@ if ( ! class_exists( 'WPBRS_Loader' ) ) {
 		 */
 		private function load_dependencies( $class ) {
 
-			$reg_exp = '/^' . WP_Block_Referrer_Spam::CLASS_PREFIX . '/i';
-
-			if ( preg_match( $reg_exp, $class ) ) {
+			if ( false !== strpos( $class, WP_Block_Referrer_Spam::CLASS_PREFIX ) ) {
 
 				$className = str_replace( '_', '-', strtolower( $class ) );
 
-				if ( preg_match( '/controller/', $className ) ) {
+				if ( false !== strpos( $class, WP_Block_Referrer_Spam::CLASS_PREFIX . 'Controller' ) ) {
 					$path = WP_Block_Referrer_Spam::$plugin_path . 'controllers/' . $className . '.php';
 					require_once( $path );
-				} elseif ( preg_match( '/model/', $className ) ) {
+				} elseif ( false !== strpos( $class, WP_Block_Referrer_Spam::CLASS_PREFIX . 'Model' ) ) {
 					$path = WP_Block_Referrer_Spam::$plugin_path . 'models/' . $className . '.php';
 					require_once( $path );
 				} else {
@@ -152,6 +150,8 @@ if ( ! class_exists( 'WPBRS_Loader' ) ) {
 			WPBRS_Model_Settings::load_defaults();
 			WPBRS_Controller_Blocker::filter_referrers_htaccess();
 			WPBRS_Controller_Cron::register_cron_jobs();
+
+			flush_rewrite_rules();
 
 		}
 
