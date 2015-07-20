@@ -15,6 +15,8 @@ Keep your website safe and your Google Analytics statistics clean and accurate.
 
 Keep your WordPress site safe and away from **referrer spam attacks**!
 
+**Not compatible with multisite yet**
+
 This plugin blocks spam sites and referrer spammers from reaching your website, keeping your Google Analytics statistics clean and accurate. It also improves the overall performance of your site by keeping away these unwanted referrers from your website, which means that your web server won't need to consume resources when a referrer spammer visits your site!
 
 
@@ -48,6 +50,8 @@ Its adaptability ensures that will work with any version of either apache, nginx
 *   When apache is used, the plugin adds specific rules into .htaccess file.
 *   When apache is not used, the plugin automatically recognizes it and uses internal code rules to keep away spammers.
 
+**Not compatible with multisite yet**
+
 Requires at least WordPress 3.2 and PHP 5.3
 
 
@@ -58,7 +62,7 @@ Every week, this plugin updates the list of referrer spammers from [this communi
 
 Please show your support for this plugin by giving it a [rating](http://wordpress.org/support/view/plugin-reviews/wp-block-referrer-spam?rate=5?rate=5#postform)
 
-**Development is on Bitbucket: https://bitbucket.org/rrodrigonuez/wp-block-referrer-spam**
+**Development is on GitHub: https://github.com/rrodrigonuez/WP-Block-Referrer-Spam**
 
 Pull requests are more than welcome!
 
